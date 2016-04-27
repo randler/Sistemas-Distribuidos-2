@@ -41,6 +41,20 @@ operações a serem fornecidas: +,-,*,/
         Usar o System.currentTimeMillis() para obtenção dos tempos.
         Caso a execução seja muito rápida, e esse método não apresente respostas adequadas, usar o System.nanoTime();
 
+* Criar CRUD
+
+1) Criar CRUD (C = Create, R = Retrieve, U = Update, D = Delete) para Produto num servidor, em um Colletion.
+2) Criar cliente que invoca remotamente os métodos CRUD.
+
+Para essa atividade necessitarão dos códigos criados referentes a:
+SOCKET TPC, REFLEXÃO E SERIALIZAÇÃO DE OBJETOS
+
+* Apresentação em Slide
+Web Server MultiThread
+Análise de desempenho com o JMeter
+Calculadora RMI
+Análise de desempenho da Calculadora
+
 Data de Entrega: 03/05/2016
 
 #II unidade
