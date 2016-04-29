@@ -41,6 +41,22 @@ operações a serem fornecidas: +,-,*,/
         Usar o System.currentTimeMillis() para obtenção dos tempos.
         Caso a execução seja muito rápida, e esse método não apresente respostas adequadas, usar o System.nanoTime();
 
+* Para Rodar o RMI: 
+
+        (Linux)
+        * Entrar na pasta da Abordagem Compilar tudo normalmente:   javac *.java
+        * Gerar stub (Operacoes_Stub.class), e adicioná-lo ao lado cliente e servidor(Caso não esteja): rmic -v1.2 Operacoes 
+        * Executar o servidor de nomes: rmiregistry &
+        * Executar o servidor: java ServidorCalc <nome_do_obj_a_ser_registrado>
+        * Executar cliente: java ClienteCalc <ipservidor> <nome_do_obj_registrado_no_servidor>
+        
+        (Windows)
+        * Entrar na pasta da Abordagem Compilar tudo normalmente:   javac *.java
+        * Gerar stub (Operacoes_Stub.class), e adicioná-lo ao lado cliente e servidor(Caso não esteja): rmic -v1.2 Operacoes 
+        * Executar o servidor de nomes (irá aparecer uma tela, espere registrar e continue após ela sair):start rmiregistry
+        * Executar o servidor(irá aparecer o servidor): start java ServidorCalc <nome_do_obj_a_ser_registrado>
+        * Executar cliente: java ClienteCalc <ipservidor> <nome_do_obj_registrado_no_servidor>
+        
 #Criar CRUD
 
 1) Criar CRUD (C = Create, R = Retrieve, U = Update, D = Delete) para Produto num servidor, em um Colletion.
