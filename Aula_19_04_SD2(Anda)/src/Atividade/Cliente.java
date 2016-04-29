@@ -8,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -21,30 +22,11 @@ import java.io.RandomAccessFile;
 
 public class Cliente {
 
-	private static byte[] convertFileToBytes() throws IOException {
-		// ------------------------ Converter para array bytes
-		// -------------------------
-		File file = new File("item.txt");
 
-		byte[] b = new byte[(int) file.length()];
-		try {
-			FileInputStream fileInputStream = new FileInputStream(file);
-			fileInputStream.read(b);
-
-		} catch (FileNotFoundException e) {
-			System.out.println("File Not Found.");
-			e.printStackTrace();
-		} catch (IOException e1) {
-			System.out.println("Error Reading The File.");
-			e1.printStackTrace();
-		}
-		return b;
-	}
-
-	private static byte[] loadBytes(String name) {
+	private static byte[] loadBytes() {
 		FileInputStream in = null;
 		try {
-			in = new FileInputStream(name);
+			in = new FileInputStream("item.txt");
 			ByteArrayOutputStream byteArrayStream/* buffer */= new ByteArrayOutputStream();
 			int bytesread = 0;
 			byte[] tbuff = new byte[1024];
@@ -65,22 +47,20 @@ public class Cliente {
 
 	public static void main(String[] args) throws UnknownHostException,
 			IOException, ClassNotFoundException {
+		
 		Socket clientSocket = new Socket("localhost", 6789);
-		BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 		String nome;// could use a random number...
 		float custo;
 		int unidade;
-		String metodo;
 		String sentence;
 		String modifiedSentence;
-		byte[] sendBuf;
-		BufferedReader inFromUser = new BufferedReader(new InputStreamReader(
-				System.in));
-		DataOutputStream outToServer = new DataOutputStream(
-				clientSocket.getOutputStream());
 
-		BufferedReader inFromServer = new BufferedReader(
-				new InputStreamReader(clientSocket.getInputStream()));
+		
+		
+		BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+		DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+		
 		while (true) {
 
 			System.out.println("Digite o procedimento: ");
@@ -92,11 +72,8 @@ public class Cliente {
 				if (clientSocket.isClosed()) {
 					clientSocket = new Socket("localhost", 6789);
 
-					outToServer = new DataOutputStream(
-							clientSocket.getOutputStream());
-
-					inFromServer = new BufferedReader(
-							new InputStreamReader(clientSocket.getInputStream()));
+					outToServer = new DataOutputStream(clientSocket.getOutputStream());
+					inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 					BufferedReader inAdiciona = new BufferedReader(new InputStreamReader(System.in));
 
 					System.out.println("digite o nome: ");
@@ -109,15 +86,23 @@ public class Cliente {
 					Produto item = new Produto(nome, unidade, custo);
 
 					try {
+						// -------------------- Criando o arquivo -----------------------
 						FileOutputStream arq = new FileOutputStream("item.txt");
 						ObjectOutputStream objarq = new ObjectOutputStream(arq);
 						objarq.writeObject(item);
 						objarq.close();
 
-						byte[] t = loadBytes("item.txt");
-
-						outToServer.writeBytes(sentence + " " + t + "\n");
-
+						//------------------------ Tranformar o arquivo em Bytes-----------
+						//byte[] t = loadBytes();
+						byte[] bytes = new byte[16 * 1024];
+						InputStream in = new FileInputStream("item.txt");
+						//-------------------------- Enviar o arquivo --------------------------
+						int count;
+				        while ((count = in.read(bytes)) > 0) {
+						outToServer.write(bytes, 0, count);
+				        }
+				        in.close();
+				        
 						modifiedSentence = inFromServer.readLine();
 
 						System.out.println("FROM SERVER: " + modifiedSentence);
@@ -147,19 +132,33 @@ public class Cliente {
 				Produto item = new Produto(nome, unidade, custo);
 
 				try {
+					
+					/* 	Velhos Essa parada ta enviando o arquivo só
+					 * 
+					 */
+					// -------------------- Criando o arquivo -----------------------
 					FileOutputStream arq = new FileOutputStream("item.txt");
 					ObjectOutputStream objarq = new ObjectOutputStream(arq);
 					objarq.writeObject(item);
 					objarq.close();
 
-					byte[] t = loadBytes("item.txt");
-
-					outToServer.writeBytes(sentence + " " + t + "\n");
-
+					//------------------------ Tranformar o arquivo em Bytes-----------
+					//byte[] t = loadBytes();
+					byte[] bytes = new byte[16 * 1024];
+					InputStream in = new FileInputStream("item.txt");
+					//-------------------------- Enviar o arquivo --------------------------
+					int count;
+			        while ((count = in.read(bytes)) > 0) {
+					outToServer.write(bytes, 0, count);
+			        }
+			        in.close();
+			        
 					modifiedSentence = inFromServer.readLine();
 
 					System.out.println("FROM SERVER: " + modifiedSentence);
 
+					
+					// --------------------------- fim do envia arquivo -----------------------
 				} catch (IOException e) {
 					System.out.println(e.getMessage());
 					e.printStackTrace();

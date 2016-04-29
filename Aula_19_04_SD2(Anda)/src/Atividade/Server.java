@@ -72,7 +72,7 @@ public class Server {
 		
 		String clientSentence;
         String capitalizedSentence;
-        
+        OutputStream out = null;
         
         ServerSocket welcomeSocket = new ServerSocket(6789);
         
@@ -82,8 +82,22 @@ public class Server {
             BufferedReader inFromClient = new BufferedReader(new InputStreamReader(conectionSocket.getInputStream()));
             
             
+            /* Saparada ta recebendo e copiado para o arquivo
+             * Mas não ta passando do while da linha 95 aqui no Server
+             */
             InputStream stream = conectionSocket.getInputStream();
             
+            out = new FileOutputStream("itemChegou.txt");
+            
+            byte[] bytes = new byte[16*1024];
+
+            int count;
+            while ((count = stream.read(bytes)) > 0) {
+                out.write(bytes, 0, count);
+            }
+            out.close();
+            stream.close();
+             //---------------------- Fim do que Copia para o arquivo ---------------
 			DataOutputStream outToClient = new DataOutputStream(
 					conectionSocket.getOutputStream());  
 			
