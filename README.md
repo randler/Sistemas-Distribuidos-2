@@ -49,6 +49,7 @@ operações a serem fornecidas: +,-,*,/
 Para essa atividade necessitarão dos códigos criados referentes a:
 SOCKET TPC, REFLEXÃO E SERIALIZAÇÃO DE OBJETOS
 
+![alt tag](https://github.com/randler/Sistemas-Distribuidos-2/blob/master/img/20160419_213734.jpg)
 
 #Apresentação em Slide
 * Web Server MultiThread
