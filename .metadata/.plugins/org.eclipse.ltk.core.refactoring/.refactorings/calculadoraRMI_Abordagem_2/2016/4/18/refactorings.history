@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy source folder &apos;src&apos; to &apos;calculadoraRMI_Abordagem_3&apos;&#x0A;- Original project: &apos;calculadoraRMI_Abordagem_2&apos;&#x0A;- Destination element: &apos;calculadoraRMI_Abordagem_3&apos;&#x0A;- Original element: &apos;calculadoraRMI_Abordagem_2/src&apos;" description="Copy source folder" element1="/src" flags="6" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyRoots" roots="1" stamp="1461953272220" target="/calculadoraRMI_Abordagem_3" version="1.0"/>
+</session>

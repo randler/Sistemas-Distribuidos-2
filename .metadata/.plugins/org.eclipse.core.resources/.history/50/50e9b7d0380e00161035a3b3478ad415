@@ -1,0 +1,9 @@
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+
+public class Divisao extends UnicastRemoteObject{
+
+	protected Divisao() throws RemoteException {}
+
+}
