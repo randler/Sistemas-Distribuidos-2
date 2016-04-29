@@ -14,8 +14,8 @@ public class ServidorCalc {
         try {
             Operacoes operacoes = new Operacoes();// create server object
             
-			//String objname = "//localhost:1099/" + args[0];// or String objname = args[0];
-            String objname = "//"+arg[0]+":1099/" + args[1];// or String objname = args[0];
+			String objname = "//localhost:1099/" + args[0];// or String objname = args[0];
+            //String objname = "//"+arg[0]+":1099/" + args[1];// or String objname = args[0];
             System.out.println("Registrando " + objname + "...");
             Naming.rebind(objname, operacoes);// rmiregistry must be running!
             System.out.println("Registrado!");

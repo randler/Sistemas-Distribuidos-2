@@ -108,7 +108,7 @@ public class Infix
         String lastOne=(String)valueStack.pop();
         
         double numero = Double.parseDouble(lastOne);
-        DecimalFormat formato = new DecimalFormat("#.##");      
+        DecimalFormat formato = new DecimalFormat("#,######");      
         numero = Double.valueOf(formato.format(numero));
                 
         return numero;   
@@ -154,23 +154,45 @@ public class Infix
     
     public String getResults(String operand1, String operator, String operand2) throws RemoteException
     {
-        System.out.println("Performing "+
-               operand1+operator+operand2);
+        //System.out.println("Performing "+operand1+operator+operand2);
         double op1=Double.parseDouble(operand1);
         double op2=Double.parseDouble(operand2);
-        double res;
-        res = ClienteCalc.distribuir(op1,operator,op2);
+        double res = 0;
+       // res = ClienteCalc.distribuir(op1,operator,op2); Aboradagem 2 em diante
+        
+        //Abordagem 1
+    	switch (operator) {
+		case "+":
+			res = op1 + op2;
+			break;
+		case "-":
+			res = op1 - op2;
+			break;
+		case "*":
+			res = op1 * op2;
+			break;
+		case "/":
+			res = op1 / op2;
+			break;
+
+		default:
+			break;
+		}
         
 		return ""+res;
         
     }
     
-    /*
     
-    public static void main(String[] args)
+    
+   /*	=+ Testes da classe infixa tentando remover parenteses
+    * 	=+ Até então só não remove parenteses mais internos
+    * 
+    *  public static void main(String[] args) throws RemoteException
     {
         Infix fix=new Infix();
-        String expression="2+8-(5.3-5*4/7+5+3)";
+        String expression="2*8-(4.3-5*4/7+5+4)";
         System.out.println(expression+"="+fix.infix(expression));
-    } */
+    }
+    */ 
 }

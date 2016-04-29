@@ -48,6 +48,11 @@ public class ClienteCalc {
         } // catch()
     } // main() 
     
+    
+    /*
+     * Aqui o cliente vai realizar a chamada pra qual maquina
+     * ele deseja enviar de acordo com sorteio ou só enviar mesmo
+     */
     public static double distribuir(double op1, String operator, double op2) throws RemoteException{
     	double res = 0;
     	/*--------------------------------------- VEI Randomiza aqui
@@ -55,8 +60,6 @@ public class ClienteCalc {
     	*		Esse código ta só pra um server
     	*		creio que a diferença será que os servidores(objetos)
     	*		vao ser um array de string
-    	*
-    	*
     	*/
     	
     	switch (operator) {
