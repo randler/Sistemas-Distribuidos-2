@@ -16,24 +16,24 @@ public class ClienteCalc {
     public static void main(String[] args) throws IOException {
     	Infix infix = new Infix();
         // interface is dealed with like a class!
-        if (args.length != 1) {
+        if (args.length != 4) {
             System.err.println("\nUsage:\t java ClienteCalc <host_servidor> <objname>\n");
             System.exit(1);
         } // if()
         try {
-            String objmaq1 = "//" + args[0] + ":1099/soma";
+            String objmaq1 = "//" + args[0] + ":1099/ soma";
             System.out.println("Procurando por objeto " + objmaq1);
             maq1 = (IOperacoesRemote) Naming.lookup(objmaq1);// rmiregistry must be running!
 
-            String objmaq2 = "//" + args[0] + ":1099/sub";
+            String objmaq2 = "//" + args[0] + ":1099/ subtracao";
             System.out.println("Procurando por objeto " + objmaq2);
             maq2 = (IOperacoesRemote) Naming.lookup(objmaq2);// rmiregistry must be running!
 
-            String objmaq3 = "//" + args[0] + ":1099/mult";
+            String objmaq3 = "//" + args[0] + ":1099/ multiplicacao";
             System.out.println("Procurando por objeto " + objmaq3);
             maq3 = (IOperacoesRemote) Naming.lookup(objmaq3);// rmiregistry must be running!
 
-            String objmaq4 = "//" + args[0] + ":1099/div";
+            String objmaq4 = "//" + args[0] + ":1099/ divisao";
             System.out.println("Procurando por objeto " + objmaq4);
             maq4 = (IOperacoesRemote) Naming.lookup(objmaq4);// rmiregistry must be running!
             
@@ -84,13 +84,13 @@ public class ClienteCalc {
 			res = maq1.somar(op1, op2);
 			break;
 		case "-":
-			res = maq2.subtrair(op1, op2);
+			res = maq1.subtrair(op1, op2);
 			break;
 		case "*":
-			res = maq3.multiplicar(op1, op2);
+			res = maq1.multiplicar(op1, op2);
 			break;
 		case "/":
-			res = maq4.dividir(op1, op2);
+			res = maq1.dividir(op1, op2);
 			break;
 
 		default:
