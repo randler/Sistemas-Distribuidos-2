@@ -1,0 +1,14 @@
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
+
+
+public class Subtracao extends UnicastRemoteObject{
+
+	protected Subtracao() throws RemoteException {}
+	
+	
+	public double subtrair(double a, double b) {
+		return a-b;
+	}
+
+}
