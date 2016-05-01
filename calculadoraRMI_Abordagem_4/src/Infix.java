@@ -1,5 +1,7 @@
 
 
+import java.net.MalformedURLException;
+import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 import java.util.Stack;
@@ -51,7 +53,7 @@ public class Infix
 		return tempP;
 	}
 
-	private String removerParenteses(String n) throws RemoteException {
+	private String removerParenteses(String n) throws RemoteException, MalformedURLException, NotBoundException {
 		int j = 0;
 		String saida = "",temp = "", temp2 = "";
 		
@@ -79,7 +81,7 @@ public class Infix
 	}
 	
     @SuppressWarnings({ "rawtypes", "unchecked" })
-	public double infix(String expression) throws RemoteException
+	public double infix(String expression) throws RemoteException, MalformedURLException, NotBoundException
     {
     	if(expression.contains("(")){
     		expression = removerParenteses(expression);
@@ -130,7 +132,7 @@ public class Infix
     
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	public void resolve(Stack values, 
-            Stack operators) throws RemoteException
+            Stack operators) throws RemoteException, MalformedURLException, NotBoundException
     {
         while(operators.size()>=2)
         {
@@ -152,7 +154,7 @@ public class Infix
         }
     }
     
-    public String getResults(String operand1, String operator, String operand2) throws RemoteException
+    public String getResults(String operand1, String operator, String operand2) throws RemoteException, MalformedURLException, NotBoundException
     {
         //System.out.println("Performing "+operand1+operator+operand2);
         double op1=Double.parseDouble(operand1);
