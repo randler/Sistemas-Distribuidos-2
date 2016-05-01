@@ -28,8 +28,9 @@ public class ClienteCalc {
 		} // if()
 		try {
 			List<Integer> repeat = new ArrayList<Integer>();
+			Random random = new Random(4);
 			while (repeat.size() < 4) {
-				int rand = (int) (0+Math.random()*4);
+				int rand = (int) (1+Math.random()*4)s;
 				if (!repeat.contains(rand)) {
 					repeat.add(rand);
 				}
