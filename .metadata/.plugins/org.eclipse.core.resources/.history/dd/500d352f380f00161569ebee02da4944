@@ -95,8 +95,8 @@ public class ClienteCalc {
 	 */
 
 	public static IOperacoesRemote aleatorio() {
-		
-		int rand = (int) (0+Math.random()*4);
+		Random random = new Random(3);
+		int rand = random.nextInt(3);
 
 		return listServer.get(rand);
 	}
