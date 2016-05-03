@@ -68,7 +68,7 @@ public class Server {
 	
 
 	
-	public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+	public static void main(String[] args) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException, InterruptedException {
 		
 		String clientSentence;
         String capitalizedSentence;
@@ -88,15 +88,12 @@ public class Server {
             InputStream stream = conectionSocket.getInputStream();
             
             out = new FileOutputStream("itemChegou.txt");
+            Thread threadArquivo = new Thread(new SalvarArq(out, stream));
+            threadArquivo.start();
+            Thread.sleep(2000);
+            threadArquivo.interrupt();
             
-            byte[] bytes = new byte[16*1024];
-
-            int count;
-            while ((count = stream.read(bytes)) > 0) {
-                out.write(bytes, 0, count);
-            }
-            out.close();
-            stream.close();
+            
              //---------------------- Fim do que Copia para o arquivo ---------------
 			DataOutputStream outToClient = new DataOutputStream(
 					conectionSocket.getOutputStream());  

@@ -15,25 +15,26 @@ public class ClienteCalc {
 	
     public static void main(String[] args) throws IOException {
     	Infix infix = new Infix();
+    	String[] ip = { "localhost", "localhost", "localhost", "localhost" };
         // interface is dealed with like a class!
-        if (args.length != 1) {
+        if (args.length != 0) {
             System.err.println("\nUsage:\t java ClienteCalc <host_servidor> <objname>\n");
             System.exit(1);
         } // if()
         try {
-            String objmaq1 = "//" + args[0] + ":1099/soma";
+            String objmaq1 = "//" + ip[0] + ":1099/soma";
             System.out.println("Procurando por objeto " + objmaq1);
             maq1 = (IOperacoesRemote) Naming.lookup(objmaq1);// rmiregistry must be running!
 
-            String objmaq2 = "//" + args[0] + ":1099/sub";
+            String objmaq2 = "//" + ip[3] + ":1099/sub";
             System.out.println("Procurando por objeto " + objmaq2);
             maq2 = (IOperacoesRemote) Naming.lookup(objmaq2);// rmiregistry must be running!
 
-            String objmaq3 = "//" + args[0] + ":1099/mult";
+            String objmaq3 = "//" + ip[2] + ":1099/mult";
             System.out.println("Procurando por objeto " + objmaq3);
             maq3 = (IOperacoesRemote) Naming.lookup(objmaq3);// rmiregistry must be running!
 
-            String objmaq4 = "//" + args[0] + ":1099/div";
+            String objmaq4 = "//" + ip[1] + ":1099/div";
             System.out.println("Procurando por objeto " + objmaq4);
             maq4 = (IOperacoesRemote) Naming.lookup(objmaq4);// rmiregistry must be running!
             

@@ -1,0 +1,21 @@
+package Atividade;
+
+import java.io.InputStream;
+import java.io.OutputStream;
+
+public class SalvarArq implements Runnable {
+	
+	
+	public public SalvarArq(OutputStream os, InputStream is) {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
+}

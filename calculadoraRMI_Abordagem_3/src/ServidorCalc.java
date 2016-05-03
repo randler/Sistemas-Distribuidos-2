@@ -7,26 +7,19 @@ public class ServidorCalc {
     
     public static void main(String[] args) {
     	String[] arg = null;    
-    	if (args.length != 4) {
+    	if (args.length != 2) {
             System.err.println("\nUsage:\t java ServidorCalc <objname>\n");
             System.exit(1);
         } // if()
         try {
-            Operacoes operacao = new Operacoes();
+            Operacoes operacoes = new Operacoes();// create server object
             
-			String objmaq1 = "//localhost:1099/" +args[0];// or String objname = args[0]
-			String objmaq2 = "//localhost:1099/"+args[1];;// or String objname = args[0]
-			String objmaq3 = "//localhost:1099/"+args[2];;// or String objname = args[0]
-			String objmaq4 = "//localhost:1099/"+args[3];;// or String objname = args[0]
-			
+			String objname = "//"+ args[0]+ ":1099/" + args[1];// or String objname = args[0];
             //String objname = "//"+arg[0]+":1099/" + args[1];// or String objname = args[0];
-            System.out.println("Registrando...");
-            Naming.rebind(objmaq1, operacao);// rmiregistry must be running!
-            Naming.rebind(objmaq2, operacao);// rmiregistry must be running!
-            Naming.rebind(objmaq3, operacao);// rmiregistry must be running!
-            Naming.rebind(objmaq4, operacao);// rmiregistry must be running!
-            
+            System.out.println("Registrando " + objname + "...");
+            Naming.rebind(objname, operacoes);// rmiregistry must be running!
             System.out.println("Registrado!");
+            	operacoes.getRef();
         } 
         catch( MalformedURLException e ) {
             System.err.println("MalformedURLException: " + e.toString());

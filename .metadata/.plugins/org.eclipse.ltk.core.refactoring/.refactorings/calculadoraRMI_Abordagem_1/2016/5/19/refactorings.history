@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 5 elements from project &apos;calculadoraRMI_Abordagem_1&apos;&#x0D;&#x0A;- Original project: &apos;calculadoraRMI_Abordagem_1&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     Client.java&#x0D;&#x0A;     Gerencia.java&#x0D;&#x0A;     Pilha.java&#x0D;&#x0A;     Pos.java&#x0D;&#x0A;     Server.java" description="Delete elements" element1="/src&lt;{Gerencia.java" element2="/src&lt;{Client.java" element3="/src&lt;{Pos.java" element4="/src&lt;{Server.java" element5="/src&lt;{Pilha.java" elements="5" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1462218122061" subPackages="false" version="1.0"/>
+</session>
