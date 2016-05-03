@@ -14,7 +14,9 @@ public class ServidorCalcLocalhost {
         try {
             Operacoes operacao = new Operacoes();
             
-			String objmaq1 = "//localhost:1099/maq1";// or String objname = args[0]
+            System.setProperty("java.rmi.server.hostname","localhost");
+			
+            String objmaq1 = "//localhost:1099/maq1";// or String objname = args[0]
 			String objmaq2 = "//localhost:1099/maq2";// or String objname = args[0]
 			String objmaq3 = "//localhost:1099/maq3";// or String objname = args[0]
 			String objmaq4 = "//localhost:1099/maq4";// or String objname = args[0]

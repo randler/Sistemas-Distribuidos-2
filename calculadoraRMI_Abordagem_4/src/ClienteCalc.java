@@ -5,6 +5,8 @@ import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -53,7 +55,7 @@ public class ClienteCalc {
 			String objmaq4 = "//" + ip[repeat.get(3)] + ":1099/" + maquina[repeat.get(3)];
 			System.out.println("Procurando por objeto " + objmaq4);
 			maq4 = (IOperacoesRemote) Naming.lookup(objmaq4);// rmiregistry must
-																// be running!
+			Registry registry = LocateRegistry.getRegistry();												// be running!
 
 			listServer.add(maq1);
 			listServer.add(maq2);
@@ -79,7 +81,7 @@ public class ClienteCalc {
 			resp = infix.infix(n);
 			long fim = System.currentTimeMillis();
 			System.out.println("Resposta: " + resp + "\n");
-			System.out.println("inicio:" + inicio + " - Fim: " + fim + "Total: "+(inicio-fim));
+			System.out.println("Total: "+(fim-inicio)+" ms");
 
 		} // try()
 		catch (RemoteException re) {

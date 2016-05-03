@@ -31,11 +31,13 @@ import java.util.StringTokenizer;
  *  4. If 0-3 do not apply, terminate loop.
  * Note: priority 1 has the highest priority, 
  * 2 is next highest and so forth
+ *  
+ * *** Modificada para remover parenteses (nao esta removendo parenteses mais internos) por Randler Ferraz 
+ * 
  * @author Jam Jenkins
  */
 public class Infix
 {
-	private ClienteCalc cliente = new ClienteCalc();
 	
 	private String remove(String n){
 		String  tempP = "";
@@ -158,7 +160,6 @@ public class Infix
         double op1=Double.parseDouble(operand1);
         double op2=Double.parseDouble(operand2);
         double res = 0;
-       // res = ClienteCalc.distribuir(op1,operator,op2); Aboradagem 2 em diante
         
         //Abordagem 1
     	switch (operator) {
@@ -186,7 +187,7 @@ public class Infix
     
     
    /*	=+ Testes da classe infixa tentando remover parenteses
-    * 	=+ Até então só não remove parenteses mais internos
+    * 	=+ Ate entao so nao remove parenteses mais internos
     * 
     *  public static void main(String[] args) throws RemoteException
     {

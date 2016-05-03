@@ -8,11 +8,12 @@ public class ServidorCalcDist {
     public static void main(String[] args) {
     	String[] arg = null;    
     	if (args.length != 2) {
-            System.err.println("\nUsage:\t java ServidorCalc <objname>\n");
+            System.err.println("\nUsage:\t java ServidorCalc <Ip> <objname>\n");
             System.exit(1);
         } // if()
         try {
             Operacoes operacoes = new Operacoes();// create server object
+            System.setProperty("java.rmi.server.hostname",args[0]);
             
 			String objname = "//"+ args[0]+ ":1099/" + args[1];// or String objname = args[0];
             //String objname = "//"+arg[0]+":1099/" + args[1];// or String objname = args[0];

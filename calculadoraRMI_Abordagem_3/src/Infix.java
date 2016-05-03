@@ -31,6 +31,9 @@ import java.util.StringTokenizer;
  *  4. If 0-3 do not apply, terminate loop.
  * Note: priority 1 has the highest priority, 
  * 2 is next highest and so forth
+ *  
+ * *** Modificada para remover parenteses (nao esta removendo parenteses mais internos) por Randler Ferraz 
+ * 
  * @author Jam Jenkins
  */
 public class Infix
