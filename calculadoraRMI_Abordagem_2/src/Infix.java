@@ -161,8 +161,8 @@ public class Infix
         double op1=Double.parseDouble(operand1);
         double op2=Double.parseDouble(operand2);
         double res = 0;
-       // res = ClienteCalc.distribuir(op1,operator,op2); Aboradagem 2 em diante
-        
+        res = ClienteCalc.distribuir(op1,operator,op2); 
+       /* 
         //Abordagem 1
     	switch (operator) {
 		case "+":
@@ -181,7 +181,7 @@ public class Infix
 		default:
 			break;
 		}
-        
+        */
 		return ""+res;
         
     }

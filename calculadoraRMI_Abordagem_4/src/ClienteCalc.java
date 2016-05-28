@@ -16,7 +16,7 @@ public class ClienteCalc {
 	static IOperacoesRemote maq2 = null;
 	static IOperacoesRemote maq3 = null;
 	static IOperacoesRemote maq4 = null;
-	static String[] ip = { "localhost", "localhost", "localhost", "localhost" };
+	static String[] ip = { "192.168.43.245", "192.168.43.13", "192.168.43.100", "192.168.43.112" };
 	static String[] maquina = { "maq1", "maq2", "maq3", "maq4" };
 	static List<IOperacoesRemote> listServer = new ArrayList<IOperacoesRemote>();
 
@@ -106,6 +106,7 @@ public class ClienteCalc {
 	public static double distribuir(double op1, String operator, double op2)
 			throws RemoteException, MalformedURLException, NotBoundException {
 		double res = 0;
+		String falha = "falha";
 		/*--------------------------------------- VEI Randomiza aqui
 		
 		*		Esse c�digo ta s� pra um server
@@ -113,24 +114,33 @@ public class ClienteCalc {
 		*		vao ser um array de string
 		*/
 
+		while(falha.equals("falha")){
+		try{
 		switch (operator) {
 		case "+":
 			res = aleatorio().somar(op1, op2);
+			falha="sucesso";
 			break;
 		case "-":
 			res = aleatorio().subtrair(op1, op2);
+			falha="sucesso";
 			break;
 		case "*":
 			res = aleatorio().multiplicar(op1, op2);
+			falha="sucesso";
 			break;
 		case "/":
 			res = aleatorio().dividir(op1, op2);
+			falha="sucesso";
 			break;
 
-		default:
-			break;
+			
+		}
+		}catch(RemoteException e){
+			System.out.println("Uma maquina caiu!!");
 		}
 
+		}
 		return res;
 
 	}
