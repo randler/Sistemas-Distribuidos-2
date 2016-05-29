@@ -8,29 +8,33 @@ import java.util.Vector;
 
 public class RequisicaoCliente {
 
+    private static CalculadoraCliente x = new CalculadoraCliente();
     private static List v = new ArrayList<>();
     private static List vOrdenada = new ArrayList<Integer>();
     private static Random gerador = new Random();
+    private static Object[] obj1, obj2, obj3, obj4, merge;
+    private static Thread t1, t2, t3, t4, mergeThread;    
+    
     /**
      * @param args
      */
-    public static void main(String[] args) {
-       CalculadoraCliente x = new CalculadoraCliente();
-      
+    public static void main(String[] args) throws InterruptedException {
+        
        gerarAleatorios();
-  
-       Object[] obj1 =  (Object[]) x.ordena(dividir(0,2500));
-       Object[] obj2 = (Object[]) x.ordena(dividir(2500, 5000));
-       Object[] obj3 = (Object[]) x.ordena(dividir(5000, 7500));
-       Object[] obj4 = (Object[]) x.ordena(dividir(7500, 10000));
+       rodarThreads();       
        
-       merge(obj1,obj2,obj3,obj4);       
+       while(t1.isAlive() || t2.isAlive() || 
+               t3.isAlive() || t4.isAlive()){}
        
-       Object[] merge =  (Object[]) x.ordena(arrayToVector(vOrdenada));
-
+       merge(obj1,obj2,obj3,obj4);
+       rodarMergeThread();
+       
+       while(mergeThread.isAlive()){}
+       
        for (int i = 0; i < merge.length; i++) {
            System.out.println(merge[i]);
        }
+
        
        
     }
@@ -72,6 +76,58 @@ public class RequisicaoCliente {
             saida.add(Integer.parseInt((String) vOrdenada.get(i)));
         }
         return saida;
+    }
+
+    private static void rodarThreads() {
+  
+        t1 = new Thread(){
+           @Override
+           public void run() {
+                obj1 =  (Object[]) x.ordena(dividir(0,2500));
+           }
+            
+        };
+        t1.start();
+        
+        t2 = new Thread(){
+           @Override
+           public void run() {
+                 obj2 = (Object[]) x.ordena(dividir(2500, 5000));
+           }
+            
+        };
+        t2.start();
+        
+        t3 = new Thread(){
+           @Override
+           public void run() {
+                obj3 = (Object[]) x.ordena(dividir(5000, 7500));
+           }
+            
+        };
+        t3.start();
+
+        t4 = new Thread(){
+           @Override
+           public void run() {
+                obj4 = (Object[]) x.ordena(dividir(7500, 10000));
+           }
+            
+        };
+        t4.start();        
+        
+    }
+
+    private static void rodarMergeThread() {
+        mergeThread = new Thread(){
+           @Override
+           public void run() {
+                merge =  (Object[]) x.ordena(arrayToVector(vOrdenada));
+
+           }
+            
+        };
+        mergeThread.start();
     }
     
     
