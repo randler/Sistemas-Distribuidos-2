@@ -13,7 +13,7 @@ import java.util.Vector;
  */
 public interface ICalculadora {
     
-    public int[] ordena(int vetor[]);
+    public Vector ordena(Vector vetor);
     
     
     

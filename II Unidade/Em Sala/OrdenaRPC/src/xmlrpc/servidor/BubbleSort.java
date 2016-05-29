@@ -1,13 +1,13 @@
 package xmlrpc.servidor;
 
-import java.util.Scanner;
+import java.util.Vector;
 
 
 //Inicio da classe BubbleSort
 public class BubbleSort {
 
     //Método bubbleSort, ele é quem faz a ordenação
-    public static void bubbleSort (int[] dados){
+    public Vector bubbleSort (int[] dados){
  
         /**
          * Inicia a variável que verifica se houve alguma troca entre os items.
@@ -58,43 +58,12 @@ public class BubbleSort {
         }     
         
         //Chama uma função para exibir os dados já organizados.
-       // imprime(dados);
-} //Fim do bubbleSort
-    
-    //Função que imprime os dados organizados.
-    public static void imprime(int[] dados){
-        
-         //Para cada iteração do for, ele imprime o dado que estiver na posição indicada pelo variável.
-         for (int posicao = 0; posicao < dados.length; posicao++ ){
-            
-            System.out.println(dados[posicao]);
-        
+        //imprime(dados);
+        Vector saida = new Vector();
+        for (int i = 0; i < dados.length; i++) {
+            saida.add(dados[i]);
         }
-        
-        
-    }
+        return saida;
     
-    
-    //Função principal, onde começa a execução.
-    public static void main(String[] args) {
-        
-        //Cria um vetor de 10 posições.
-        int[] dados = new int[10];
-        
-        //Cria uma instancia de Scanner para realizar a leitura dos valores.
-        Scanner in = new Scanner(System.in);
-        
-        //Para cada iteração do for ele lê um valor.
-        for (int posicao = 0; posicao < dados.length; posicao++ ){
-            
-             System.out.println("Entre com um valor");
-             dados[posicao] = in.nextInt();
-        
-        }
-        
-        //Chama o método bubbleSort para ordenar os dados recebidos.
-        bubbleSort(dados);
-        
-        
-    }
+    } //Fim do bubbleSort
 }

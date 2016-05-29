@@ -1,6 +1,6 @@
 package xmlrpc.cliente;
 
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Vector;
 
 public class CalculadoraCliente {
@@ -11,9 +11,11 @@ public class CalculadoraCliente {
         cliente = new ClienteXmlRpc();
     }
 
-    public List ordena(List vetor) {
+
+    public Object ordena(Vector vetor) {
         Object[] parametros = new Object[]{vetor};
-        Vector resultado =  (Vector) cliente.executar("Calc.ordena", parametros);
+        Object resultado = cliente.executar("Calc.ordena", parametros);
+        
         return resultado;
     }
     
