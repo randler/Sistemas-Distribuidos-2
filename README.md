@@ -76,9 +76,11 @@ SOCKET TPC, REFLEXÃO E SERIALIZAÇÃO DE OBJETOS
 Data de Entrega: 03/05/2016
 
 #II unidade
+* 1) Desenvolver Ordenamento de 10.000 numeros aleatorios, em quatro maquina distribuidas
+* 2) Desenvolver Tutorial: https://netbeans.org/kb/docs/websvc/flower_overview.html
 
-*  (pontos) – Data de Entrega: xx/xx/2016
+Data de Entrega: xx/xx/2016
 
 #III unidade
 
-*  (pontos) – Data de Entrega: xx/xx/2016
+Data de Entrega: xx/xx/2016
