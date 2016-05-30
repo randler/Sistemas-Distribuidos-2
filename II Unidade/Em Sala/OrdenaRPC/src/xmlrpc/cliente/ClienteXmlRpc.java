@@ -1,9 +1,11 @@
 package xmlrpc.cliente;
 
 import java.net.URL;
+import javax.swing.JOptionPane;
 import org.apache.xmlrpc.*;
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
+import xmlrpc.frame.ServidorFrame;
 
 public class ClienteXmlRpc {
 

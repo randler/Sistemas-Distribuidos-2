@@ -18,7 +18,7 @@ public class RequisicaoCliente {
     /**
      * @param args
      */
-    public static void main(String[] args) throws InterruptedException {
+    public Object[] main() throws InterruptedException {
         
        gerarAleatorios();
        rodarThreads();       
@@ -30,12 +30,8 @@ public class RequisicaoCliente {
        rodarMergeThread();
        
        while(mergeThread.isAlive()){}
-       
-       for (int i = 0; i < merge.length; i++) {
-           System.out.println(merge[i]);
-       }
 
-       
+       return merge;
        
     }
 
