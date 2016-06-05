@@ -8,7 +8,10 @@ import java.util.Vector;
 
 public class RequisicaoCliente {
 
-    private static CalculadoraCliente x = new CalculadoraCliente();
+    private static CalculadoraCliente maq1 = new CalculadoraCliente();
+    private static CalculadoraCliente maq2 = new CalculadoraCliente();
+    private static CalculadoraCliente maq3 = new CalculadoraCliente();
+    private static CalculadoraCliente maq4 = new CalculadoraCliente();
     private static List v = new ArrayList<>();
     private static List vOrdenada = new ArrayList<Integer>();
     private static Random gerador = new Random();
@@ -36,6 +39,9 @@ public class RequisicaoCliente {
     }
 
     private static void gerarAleatorios() {
+        if(!v.isEmpty()){
+            v = new ArrayList<>();
+        }
            for (int i = 0; i < 10000; i++) {
             int numero = gerador.nextInt(2500) + 1;
             v.add(numero);
@@ -51,7 +57,9 @@ public class RequisicaoCliente {
     }
 
     private static void merge(Object[] obj1, Object[] obj2, Object[] obj3, Object[] obj4) {
-        
+        if(!vOrdenada.isEmpty()){
+            vOrdenada = new ArrayList<Integer>();
+        }
         for (int i = 0; i < obj1.length; i++) {
             vOrdenada.add(obj1[i].toString());
         }
@@ -79,7 +87,7 @@ public class RequisicaoCliente {
         t1 = new Thread(){
            @Override
            public void run() {
-                obj1 =  (Object[]) x.ordena(dividir(0,2500));
+                obj1 =  (Object[]) maq1.ordena(dividir(0,2500));
            }
             
         };
@@ -88,7 +96,7 @@ public class RequisicaoCliente {
         t2 = new Thread(){
            @Override
            public void run() {
-                 obj2 = (Object[]) x.ordena(dividir(2500, 5000));
+                 obj2 = (Object[]) maq2.ordena(dividir(2500, 5000));
            }
             
         };
@@ -97,7 +105,7 @@ public class RequisicaoCliente {
         t3 = new Thread(){
            @Override
            public void run() {
-                obj3 = (Object[]) x.ordena(dividir(5000, 7500));
+                obj3 = (Object[]) maq3.ordena(dividir(5000, 7500));
            }
             
         };
@@ -106,7 +114,7 @@ public class RequisicaoCliente {
         t4 = new Thread(){
            @Override
            public void run() {
-                obj4 = (Object[]) x.ordena(dividir(7500, 10000));
+                obj4 = (Object[]) maq4.ordena(dividir(7500, 10000));
            }
             
         };
@@ -118,7 +126,7 @@ public class RequisicaoCliente {
         mergeThread = new Thread(){
            @Override
            public void run() {
-                merge =  (Object[]) x.ordena(arrayToVector(vOrdenada));
+                merge =  (Object[]) maq1.ordena(arrayToVector(vOrdenada));
 
            }
             

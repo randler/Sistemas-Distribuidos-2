@@ -4,10 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/randler/Documents/NetBeansProjects/OrdenaRPC/src/xmlrpc/frame/ServidorFrame.java</file>
-            <file>file:/C:/Users/randler/Documents/NetBeansProjects/OrdenaRPC/src/xmlrpc/cliente/CalculadoraCliente.java</file>
+            <file>file:/C:/Users/randler/Documents/NetBeansProjects/OrdenaRPC/src/xmlrpc/Executor/ClientMain.java</file>
             <file>file:/C:/Users/randler/Documents/NetBeansProjects/OrdenaRPC/src/xmlrpc/cliente/RequisicaoCliente.java</file>
-            <file>file:/C:/Users/randler/Documents/NetBeansProjects/OrdenaRPC/src/xmlrpc/cliente/ClienteXmlRpc.java</file>
+            <file>file:/C:/Users/randler/Documents/NetBeansProjects/OrdenaRPC/src/xmlrpc/Executor/ServerMain.java</file>
+            <file>file:/C:/Users/randler/Documents/NetBeansProjects/OrdenaRPC/src/xmlrpc/servidor/ServidorXMLRPCParaTestes.java</file>
             <file>file:/C:/Users/randler/Documents/NetBeansProjects/OrdenaRPC/src/xmlrpc/frame/ClienteFrame.java</file>
+            <file>file:/C:/Users/randler/Documents/NetBeansProjects/OrdenaRPC/src/xmlrpc/servidor/RodarServidor.java</file>
         </group>
     </open-files>
 </project-private>
