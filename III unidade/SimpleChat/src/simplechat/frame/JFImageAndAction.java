@@ -23,16 +23,22 @@ public class JFImageAndAction extends javax.swing.JFrame {
      * Creates new form JFImageAndAction
      */
     public JFImageAndAction() {
-        initComponents();       
+        initComponents();
+        
     }
 
     
   class PainelDesenho extends JPanel{
   private int quantPontos = 0;
-  private Point pontos[] = new Point[10000];
+  private Point pontos[] = new Point[10000000];
 
-  public PainelDesenho(){
-    this.setBackground(Color.WHITE);    
+  public void limpar(){
+      this.quantPontos = 0;
+      this.pontos = new Point[10000000];
+      repaint();
+  }
+  
+  public PainelDesenho(){  
 
     this.addMouseMotionListener(
       new MouseMotionAdapter(){
@@ -151,7 +157,7 @@ public class JFImageAndAction extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       
+        painel.limpar();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

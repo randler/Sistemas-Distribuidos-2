@@ -22,6 +22,7 @@ import org.jgroups.util.Util;
 public class SimpleChat extends ReceiverAdapter {
 
     private JChannel channel;
+    
     private final List<String> state = new LinkedList<String>();
 
     String user_name = System.getProperty("user.name", "n/a");
@@ -66,7 +67,7 @@ public class SimpleChat extends ReceiverAdapter {
         System.out.println("**view: " + new_view);
     }
     public void receive(Message msg){
-        System.out.println(msg.getSrc() + ": " + msg.getObject());
+        System.out.println(msg.getSrc() + " enviou: " + msg.getObject());
     }
     
     private void eventLoop() {
