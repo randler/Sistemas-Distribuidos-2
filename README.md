@@ -83,4 +83,29 @@ Data de Entrega: xx/xx/2016
 
 #III unidade
 
+DESENVOLVER UM PROGRAMA SIMILAR AO EXEMPLO DISPONIBILIZADO PELO JGROUPS, ONDE O DESENHO QUE É FEITO EM UM TELA, É REPLICADA PARA OS DEMAIS PROCESSOS QUE FAZEM PARTE DO MESMO CLUSTER.
+
+Para isso, vocês terão em mãos, um Chat Simples com JGroups, o exemplo do JGroups que deverão seguir, e alguns exemplos de Applets 
+
+
+*1. Para rodar o exemplo disponibilizado pelo JGroups disponível aqui: http://jgroups.org/tutorial/index.html#_running_a_demo_program
+*1.1) Executar o seguinte comando na pasta onde foi salvado o JGroups, ficando atento a substituição do nome do arquivo .jar, de acordo ao nome do arquivo baixado.
+java -cp jgroups-3.6.10.Final.jar -Djava.net.preferIPv4Stack=true org.jgroups.demos.Draw
+*1.2) Uma outra alternativa é adicionar o arquivo .jar na variável de ambiente CLASSPATH. desta forma só precisaria executar o seguinte comando:
+java -Djava.net.preferIPv4Stack=true org.jgroups.demos.Draw
+
+
+*2. Material com exemplo de Applets
+http://www.realapplets.com/tutorial/MouseClickExample.html
+http://www.inf.pucrs.br/flash/lapro2/aula_applets.html
+http://www.inf.pucrs.br/flash/lapro2/11-applets.pdf
+http://www.inf.pucrs.br/flash/lapro2/exapplets.zip
+Anexo também tem alguns códigos fontes, o do link acima, e o que eu fiz em sala de aula.
+
+*3. Link para o chat simples
+http://jgroups.org/tutorial/index.html#_writing_a_simple_application
+
+*4. Download do toolkit JGroups
+https://sourceforge.net/projects/javagroups/files/JGroups/
+
 Data de Entrega: xx/xx/2016
