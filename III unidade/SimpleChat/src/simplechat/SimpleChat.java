@@ -5,10 +5,11 @@
  */
 package simplechat;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.jgroups.JChannel;
 import org.jgroups.Message;
 import org.jgroups.ReceiverAdapter;
@@ -22,18 +23,18 @@ import org.jgroups.util.Util;
 public class SimpleChat extends ReceiverAdapter {
 
     private JChannel channel;
-    
+    private MouseEvent e = null;
     private final List<String> state = new LinkedList<String>();
 
-    String user_name = System.getProperty("user.name", "n/a");
+    String user_name = System.getProperty("user.name", "n/a"); 
 
-    private void start() throws Exception {
+    public void start() throws Exception {
         channel = new JChannel();
         channel.setReceiver(this);
         channel.connect("ChatCluster");
         channel.getState(null, 10000);
-        eventLoop();
-        channel.close();
+        //eventLoop();
+        //channel.close();
     }
     
     public byte[] getState(){
@@ -59,40 +60,33 @@ public class SimpleChat extends ReceiverAdapter {
                 System.out.println(str);
             }
         }catch(Exception e){
-            e.printStackTrace();
         }
     }
 
+    @Override
     public void viewAccepted(View new_view){
         System.out.println("**view: " + new_view);
     }
-    public void receive(Message msg){
-        System.out.println(msg.getSrc() + " enviou: " + msg.getObject());
+    
+    @Override
+    public void receive(Message msg){           
+        e = (MouseEvent) msg.getObject();
+        System.out.print("x: " + e.getX() + " / ");
+        System.out.println("y: " + e.getY());
     }
     
-    private void eventLoop() {
-        BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
-            try {
-                System.out.println(">");
-                System.out.flush();
+    public void send(MouseEvent e){
 
-                String line = in.readLine().toLowerCase();
-
-                if (line.startsWith("quit") || line.startsWith("exit")) {
-                    break;
-                }
-                line = "[" + user_name + "]" + line;
-                Message msg = new Message(null,null,line);
-                channel.send(msg);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        try {
+            Message msg = new Message(null,null,e);
+            channel.send(msg);
+        } catch (Exception ex) {
+            Logger.getLogger(SimpleChat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
-    public static void main(String[] args) throws Exception {
-        new SimpleChat().start();
+    public MouseEvent getE() {
+        return e;
     }
-
+    
 }
