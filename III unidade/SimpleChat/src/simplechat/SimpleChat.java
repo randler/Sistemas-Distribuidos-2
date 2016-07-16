@@ -86,6 +86,8 @@ public class SimpleChat extends ReceiverAdapter {
     }
 
     public MouseEvent getE() {
+        if(e==null)
+            e= new MouseEvent(null, 0, 0, 0, 0, 0, 0, true);
         return e;
     }
     
