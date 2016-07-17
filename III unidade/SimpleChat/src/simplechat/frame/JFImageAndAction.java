@@ -5,15 +5,10 @@
  */
 package simplechat.frame;
 
-import java.awt.Event;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
@@ -21,8 +16,6 @@ import org.jgroups.JChannel;
 import org.jgroups.Message;
 import org.jgroups.ReceiverAdapter;
 import org.jgroups.View;
-import org.jgroups.util.Util;
-import simplechat.SimpleChat;
 
 /**
  *
@@ -50,11 +43,8 @@ public class JFImageAndAction extends javax.swing.JFrame {
 
     }
 
-    
     // -------------------------------- Classe Painel -----------------------
     class PainelDesenho extends JPanel {
-
-        
 
         public PainelDesenho() {
 
@@ -64,7 +54,6 @@ public class JFImageAndAction extends javax.swing.JFrame {
                 public void mouseDragged(MouseEvent e) {
                     if (quantPontos < pontos.length) {
                         chat.send(e);
-
                         repaint();
                     }
                 }
@@ -72,77 +61,56 @@ public class JFImageAndAction extends javax.swing.JFrame {
             );
         }
 
-
         @Override
-        public void paintComponent(Graphics g) {            
-            super.paintComponent(g);            
-            
+        public void paintComponent(Graphics g) {
+            super.paintComponent(g);
+
             for (int i = 0; i < quantPontos; i++) {
                 //SUBSTITUIR NESSA COORDENADA
-                g.fillOval(pontos[i].x,pontos[i].y ,9, 9);
+                g.fillOval(pontos[i].x, pontos[i].y, 9, 9);
             }
         }
     }
 
     //----------------------------- Fim da Classe Painel -----------------------
-    
-    
     //---------------------------- Classe chat simples -------------------------
-    
-    
     public class SimpleChat2 extends ReceiverAdapter {
 
-    
+        String user_name = System.getProperty("user.name", "n/a");
 
-    String user_name = System.getProperty("user.name", "n/a"); 
-
-    public void start() throws Exception {
-        channel = new JChannel();
-        channel.setReceiver(this);
-        channel.connect("ChatCluster");
-        //eventLoop();
-        //channel.close();
-    }
-
-    @Override
-    public void viewAccepted(View new_view){
-        System.out.println("**view: " + new_view);
-    }
-    
-    @Override
-    public void receive(Message msg){           
-        e = (MouseEvent) msg.getObject();
-        
-        pontos[quantPontos] = e.getPoint();
-        quantPontos++;
-        repaint();
-        
-        System.out.print("x: " + e.getX() + " / ");
-        System.out.println("y: " + e.getY());
-    }
-    
-    public void send(MouseEvent e){
-
-        try {
-            Message msg = new Message(null,null,e);
-            channel.send(msg);
-        } catch (Exception ex) {
-            Logger.getLogger(SimpleChat.class.getName()).log(Level.SEVERE, null, ex);
+        public void start() throws Exception {
+            channel = new JChannel();
+            channel.setReceiver(this);
+            channel.connect("ChatCluster");
+            //eventLoop();
+            //channel.close();
         }
+
+        @Override
+        public void viewAccepted(View new_view) {
+            System.out.println("**view: " + new_view);
+        }
+
+        @Override
+        public void receive(Message msg) {
+            e = (MouseEvent) msg.getObject();
+            pontos[quantPontos] = e.getPoint();
+            quantPontos++;
+            repaint();
+        }
+
+        public void send(MouseEvent e) {
+            try {
+                Message msg = new Message(null, null, e);
+                channel.send(msg);
+            } catch (Exception ex) {
+                Logger.getLogger(SimpleChat2.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
     }
-    
-}
-    
-    
-    
-    
-    
+
     // --------------------------- Fim da classe chat Simples ------------------
-    
-    
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
